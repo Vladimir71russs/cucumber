@@ -1,0 +1,52 @@
+import random
+import time
+
+# База вопросов
+questions = [
+    {"question": "Какой год был основан Python?", "options": ["1989", "1991", "2000", "2005"], "answer": "1991"},
+    {"question": "Какой результат у выражения 2 ** 3?", "options": ["5", "6", "8", "10"], "answer": "8"},
+    {"question": "Как называется главный файл в Django-проекте?", "options": ["run.py", "main.py", "manage.py", "server.py"], "answer": "manage.py"},
+    {"question": "Какой оператор используется для деления в Python?", "options": ["/", "//", "%", "*"], "answer": "/"},
+    {"question": "Что делает функция `len()`?", "options": ["Возвращает длину строки", "Удаляет элемент", "Создает список", "Останавливает программу"], "answer": "Возвращает длину строки"}
+]
+
+# Функция для отображения вопросов и проверки ответов
+def ask_question(question_data):
+    print("\n" + question_data["question"])
+    for i, option in enumerate(question_data["options"], start=1):
+        print(f"{i}. {option}")
+    
+    while True:
+        try:
+            user_answer = int(input("Введите номер ответа: "))
+            if 1 <= user_answer <= len(question_data["options"]):
+                break
+            else:
+                print("Ошибка: введите число от 1 до 4.")
+        except ValueError:
+            print("Ошибка: введите число.")
+
+    return question_data["options"][user_answer - 1] == question_data["answer"]
+
+# Главная функция игры
+def quiz():
+    print("Добро пожаловать в Викторину! Ответьте на вопросы.")
+    score = 0
+
+    random.shuffle(questions)  # Перемешиваем вопросы
+
+    for q in questions:
+        if ask_question(q):
+            print("✅ Верно!")
+            score += 1
+        else:
+            print(f"❌ Неправильно! Правильный ответ: {q['answer']}")
+
+        time.sleep(1)  # Даем пользователю передохнуть
+
+    print("\nИгра окончена!")
+    print(f"Ваш результат: {score} из {len(questions)}")
+
+# Запуск игры
+if __name__ == "__main__":
+    quiz()
