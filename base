@@ -1,4 +1,4 @@
-import random
+    import random
 import time
 
 # База вопросов
@@ -50,4 +50,4 @@ def quiz():
 # Запуск игры
 if __name__ == "__main__":
     quiz()
-2312dfdf
+2312dfdf12
