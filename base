@@ -50,4 +50,4 @@ def quiz():
 # Запуск игры
 if __name__ == "__main__":
     quiz()
-2312
+2312dfdf
